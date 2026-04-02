@@ -2,7 +2,7 @@ const jwt=require('jsonwebtoken')
 const User=require('../models/userSchema')
 
 const generateToken=(id)=>{
-    jwt.sign(
+ return jwt.sign(
         {id},
         process.env.JWT_SECRET,
         {expiresIn:'7d'}
