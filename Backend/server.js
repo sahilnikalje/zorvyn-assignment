@@ -1,21 +1,24 @@
 require('dotenv').config()
 const express=require('express')
+const limiter=require('./middlewares/rateLimiter')
 const connectDB = require('./config/db')
 
 const authRoutes = require('./routes/authRoutes')
 const userRoutes=require('./routes/userRoutes')
+const transactionRoutes = require('./routes/transactionRoutes')
 
 const app=express()
 
 app.use(express.json())
+app.use(limiter)
 
-
-app.get('/', (req,res)=>{
+app.get('/server', (req,res)=>{
     res.send('Server Running')
 })
 
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/transactions', transactionRoutes)
 
 const PORT=process.env.PORT
 const startServer=async()=>{
