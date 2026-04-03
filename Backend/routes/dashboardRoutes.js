@@ -5,9 +5,9 @@ const{ getSummary, getCategoryTotals, getMonthlyTrends, getRecentActivity }=requ
 
 const dashboardRouter=express.Router()
 
-dashboardRouter.get('/summary', getSummary)
-dashboardRouter.get('/category-totals', getCategoryTotals)
-dashboardRouter.get('/monthly-trends', getMonthlyTrends)
-dashboardRouter.get('/recent', getRecentActivity)
+dashboardRouter.get('/summary', protect, authorizeRoles('analyst', 'admin'), getSummary)
+dashboardRouter.get('/category-totals', protect, authorizeRoles('analyst', 'admin'), getCategoryTotals)
+dashboardRouter.get('/monthly-trends', protect, authorizeRoles('analyst', 'admin'), getMonthlyTrends)
+dashboardRouter.get('/recent', protect, authorizeRoles('analyst', 'admin'), getRecentActivity)
 
 module.exports=dashboardRouter
