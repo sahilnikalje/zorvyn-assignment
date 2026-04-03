@@ -6,6 +6,7 @@ const connectDB = require('./config/db')
 const authRoutes = require('./routes/authRoutes')
 const userRoutes=require('./routes/userRoutes')
 const transactionRoutes = require('./routes/transactionRoutes')
+const dashboardRoutes = require('./routes/dashboardRoutes')
 
 const app=express()
 
@@ -19,6 +20,7 @@ app.get('/server', (req,res)=>{
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/transactions', transactionRoutes)
+app.use('/api/dashboard', dashboardRoutes)
 
 const PORT=process.env.PORT
 const startServer=async()=>{
